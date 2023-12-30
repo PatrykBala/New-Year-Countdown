@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year is Comming</title>
+
+    <!--css-->
+    <link rel="stylesheet" href="index_style.css">
+
+</head>
+<body>
+
+<div>
+    <h1 style="text-align: center;">❄️New Year is Comming❄️</h1>
+    <div id="countdown"></div>
+</div>
+
+<script>
+    function updateCountdown() {
+        const now = new Date();
+        const newYear = new Date(now.getFullYear() + 1, 0, 1, 0, 0, 0);
+
+        const timeLeft = newYear - now;
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        const countdownElement = document.getElementById('countdown');
+        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        requestAnimationFrame(updateCountdown);
+    }
+
+    updateCountdown();
+
+    setInterval(() => {
+        const countdownElement = document.getElementById('countdown');
+        countdownElement.style.animation = 'colorChange 2s ease-in-out';
+        setTimeout(() => {
+            countdownElement.style.animation = 'none';
+        }, 2000);
+    }, 5000);
+</script>
+
+</body>
+</html>
